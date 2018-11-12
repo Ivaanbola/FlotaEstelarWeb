@@ -1,5 +1,9 @@
 package modelo;
 
+import java.sql.SQLException;
+
+import dao.DAOTripulantes;
+
 public class Tripulantes {
 	private int id;
 	private String nombre;
@@ -122,5 +126,22 @@ public class Tripulantes {
 	public void setNave(int nave) {
 		this.nave = nave;
 	}
+	
+	public void insertar() {
+		try {
+			DAOTripulantes.getInstance().insert(this);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void borrar() {
+		try {
+			DAOTripulantes.getInstance().delete(this);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 
 }

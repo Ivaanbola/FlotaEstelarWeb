@@ -9,9 +9,8 @@
 </head>
 <body>
 	<div id="contenedor">
-
-		<jsp:include page="/includes/header.inc.jsp"></jsp:include>
-		<jsp:include page="/includes/nav.inc.jsp"></jsp:include>
+		<%@include file="/includes/header.inc.jsp"%>
+		<%@include file="/includes/nav.inc.jsp"%>
 
 		<section>
 			<div class="headersection">
@@ -53,12 +52,11 @@
 					essential for the main characters to have someone to interact with
 					beyond mindless drones</p>
 				<p>
-			
 			</div>
-
 		</section>
-		<jsp:include page="/includes/aside.inc.jsp"></jsp:include>
-		<jsp:include page="/includes/footer.inc.jsp"></jsp:include>
+		
+		<%@include file="/includes/aside.inc.jsp"%>
+		<%@include file="/includes/footer.inc.jsp"%>
 	</div>
 </body>
 </html>
