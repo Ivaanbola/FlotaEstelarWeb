@@ -5,7 +5,7 @@
 <head>
 <link href="css/estilos.css" rel="stylesheet" type="text/css" />
 <meta charset="UTF-8">
-<title>Nave</title>
+<title>Misiones</title>
 <script>
 	function pinchaboton() {
 		alert("No toques las cosas de tocar");
@@ -32,23 +32,13 @@
 								id="nombre" required></td>
 						</tr>
 						<tr>
-							<td>Capitan:</td>
+							<td>Nave:</td>
 							<td><input type="text" name="capitan" required></td>
 						</tr>
 						<tr>
-							<td>Matricula:</td>
+							<td>Descripcion:</td>
 							<td><input type="text" maxlength="20" name="matricula"
 								required></td>
-						</tr>
-						<tr>
-							<td>Tipo :</td>
-							<td><input type="text" name="tipo"></td>
-						</tr>
-						<tr>
-							<td>Foto:</td>
-						</tr>
-						<tr>
-							<td colspan="2"><input type="file" name="foto"></td>
 						</tr>
 						<tr>
 							<td colspan="1"><input type="button" onclick="validar()"
@@ -62,7 +52,7 @@
 				<h3>Actualizar</h3>
 				<form name="usuario" action="" method="post"
 					enctype="multipart/form-data">
-					<table >
+					<table>
 						<tr>
 							<td>Inserta el ID:</td>
 							<td><input type="number" name="id" id="id" required></td>
@@ -73,23 +63,13 @@
 								id="nombre" required></td>
 						</tr>
 						<tr>
-							<td>Capitan:</td>
+							<td>Nave:</td>
 							<td><input type="text" name="capitan" required></td>
 						</tr>
 						<tr>
-							<td>Matricula:</td>
+							<td>Descripcion:</td>
 							<td><input type="text" maxlength="20" name="matricula"
 								required></td>
-						</tr>
-						<tr>
-							<td>Tipo :</td>
-							<td><input type="text" name="tipo"></td>
-						</tr>
-						<tr>
-							<td>Foto:</td>
-						</tr>
-						<tr>
-							<td colspan="2"><input type="file" name="foto"></td>
 						</tr>
 						<tr>
 							<td colspan="1"><input type="button" onclick="validar()"
@@ -103,14 +83,13 @@
 				<h3>Borrar</h3>
 				<form name="usuario" action="" method="post"
 					enctype="multipart/form-data">
-					<table >
+					<table>
 						<tr>
 							<td>Inserta el ID:</td>
 							<td><input type="number" name="id" id="id" required></td>
 						</tr>
-							<tr>
-							<td><input type="button" onclick="validar()"
-								value="Guardar"></td>
+						<tr>
+							<td><input type="button" onclick="validar()" value="Guardar"></td>
 						</tr>
 					</table>
 				</form>
@@ -121,10 +100,8 @@
 					<tr>
 						<th>ID</th>
 						<th>Nombre</th>
-						<th>Capitan</th>
-						<th>Matricula</th>
-						<th>Tipo</th>
-						<th>Foto</th>
+						<th>Nave</th>
+						<th>Descripcion</th>
 					</tr>
 					<tr>
 					</tr>

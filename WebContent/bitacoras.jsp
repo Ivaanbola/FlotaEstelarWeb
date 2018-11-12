@@ -5,7 +5,7 @@
 <head>
 <link href="css/estilos.css" rel="stylesheet" type="text/css" />
 <meta charset="UTF-8">
-<title>Nave</title>
+<title>Bitacoras</title>
 <script>
 	function pinchaboton() {
 		alert("No toques las cosas de tocar");
@@ -27,25 +27,16 @@
 					enctype="multipart/form-data">
 					<table>
 						<tr>
-							<td>Nombre:</td>
+							<td>Nave:</td>
 							<td><input type="text" maxlength="50" name="nombre"
 								id="nombre" required></td>
 						</tr>
 						<tr>
-							<td>Capitan:</td>
+							<td>Fecha:</td>
 							<td><input type="text" name="capitan" required></td>
 						</tr>
 						<tr>
-							<td>Matricula:</td>
-							<td><input type="text" maxlength="20" name="matricula"
-								required></td>
-						</tr>
-						<tr>
-							<td>Tipo :</td>
-							<td><input type="text" name="tipo"></td>
-						</tr>
-						<tr>
-							<td>Foto:</td>
+							<td>Audio:</td>
 						</tr>
 						<tr>
 							<td colspan="2"><input type="file" name="foto"></td>
@@ -68,25 +59,16 @@
 							<td><input type="number" name="id" id="id" required></td>
 						</tr>
 						<tr>
-							<td>Nombre:</td>
+							<td>Nave:</td>
 							<td><input type="text" maxlength="50" name="nombre"
 								id="nombre" required></td>
 						</tr>
 						<tr>
-							<td>Capitan:</td>
-							<td><input type="text" name="capitan" required></td>
+							<td>Fecha:</td>
+							<td><input type="date" name="capitan" required></td>
 						</tr>
 						<tr>
-							<td>Matricula:</td>
-							<td><input type="text" maxlength="20" name="matricula"
-								required></td>
-						</tr>
-						<tr>
-							<td>Tipo :</td>
-							<td><input type="text" name="tipo"></td>
-						</tr>
-						<tr>
-							<td>Foto:</td>
+							<td>Audio:</td>
 						</tr>
 						<tr>
 							<td colspan="2"><input type="file" name="foto"></td>
@@ -120,11 +102,9 @@
 				<table class="lista">
 					<tr>
 						<th>ID</th>
-						<th>Nombre</th>
-						<th>Capitan</th>
-						<th>Matricula</th>
-						<th>Tipo</th>
-						<th>Foto</th>
+						<th>Nave</th>
+						<th>Fecha</th>
+						<th>Audio</th>
 					</tr>
 					<tr>
 					</tr>
