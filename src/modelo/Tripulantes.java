@@ -1,6 +1,7 @@
 package modelo;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import dao.DAOTripulantes;
 
@@ -126,22 +127,62 @@ public class Tripulantes {
 	public void setNave(int nave) {
 		this.nave = nave;
 	}
-	
+
+	public ArrayList<Tripulantes> listarTripulantes() {
+		ArrayList<Tripulantes> lista = null;
+		try {
+			lista = DAOTripulantes.getInstance().listaTripulantes();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return lista;
+	}
+
+	public void buscarID(int id) {
+		Tripulantes e = null;
+		try {
+			e = DAOTripulantes.getInstance().buscarID(id);
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+		if (e != null) {
+			this.id = e.getId();
+			this.nombre = e.getNombre();
+			this.cargo = e.getCargo();
+			this.sexo = e.getSexo();
+			this.experiencia = e.getExperiencia();
+			this.origen = e.getOrigen();
+			this.raza = e.getRaza();
+			this.edad = e.getEdad();
+			this.foto = e.getFoto();
+			this.nave = e.getNave();
+		}
+	}
+
 	public void insertar() {
 		try {
 			DAOTripulantes.getInstance().insert(this);
+			System.out.println("Nuevo registro insertado");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void borrar() {
 		try {
 			DAOTripulantes.getInstance().delete(this);
+			System.out.println("Registro eliminado");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
+	public void actualizar() {
+		try {
+			DAOTripulantes.getInstance().update(this);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 }

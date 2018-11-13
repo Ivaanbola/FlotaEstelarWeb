@@ -1,5 +1,10 @@
 package modelo;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import dao.DAOMisiones;
+
 public class Misiones {
 	private int id;
 	private String nombre;
@@ -55,4 +60,55 @@ public class Misiones {
 		this.descripcion = descripcion;
 	}
 
+	public ArrayList<Misiones> listarMisiones() {
+		ArrayList<Misiones> lista = null;
+		try {
+			lista = DAOMisiones.getInstance().listaMisiones();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return lista;
+	}
+	
+	public void buscarID(int id) {
+		System.out.println("Búsqueda de una nave");
+		Misiones e = null;
+		try {
+			e = DAOMisiones.getInstance().buscarID(id);
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+		if (e != null) {
+			this.id = e.getId();
+			this.nave = e.getNave();
+			this.nombre=e.getNombre();
+			this.descripcion = e.getDescripcion();
+		}
+	}
+	
+	public void insertar() {
+		try {
+			DAOMisiones.getInstance().insert(this);
+			System.out.println("Nuevo registro insertado");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void borrar() {
+		try {
+			DAOMisiones.getInstance().delete(this);
+			System.out.println("Registro eliminado");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void actualizar() {
+		try {
+			DAOMisiones.getInstance().update(this);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }
