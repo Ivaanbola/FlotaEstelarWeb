@@ -20,76 +20,11 @@
 		<%@include file="/includes/nav.inc.jsp"%>
 
 		<section>
-
 			<div class="formulario">
-				<h3>Insertar</h3>
-				<form name="usuario" action="" method="post"
-					enctype="multipart/form-data">
-					<table>
-						<tr>
-							<td>Nombre:</td>
-							<td><input type="text" maxlength="50" name="nombre"
-								id="nombre" required></td>
-						</tr>
-						<tr>
-							<td>Capitan:</td>
-							<td><input type="text" name="capitan" required></td>
-						</tr>
-						<tr>
-							<td>Matricula:</td>
-							<td><input type="text" maxlength="20" name="matricula"
-								required></td>
-						</tr>
-						<tr>
-							<td>Tipo :</td>
-							<td><input type="text" name="tipo"></td>
-						</tr>
-						<tr>
-							<td>Foto:</td>
-						</tr>
-						<tr>
-							<td colspan="2"><input type="file" name="foto"></td>
-						</tr>
-						<tr>
-							<td colspan="1"><input type="button" onclick="validar()"
-								value="Guardar"></td>
-						</tr>
-					</table>
-				</form>
-			</div>
+				<h1>Lista Naves</h1>
 
-			<div class="formulario">
-				<h3>Borrar</h3>
-				<form name="usuario" action="" method="post"
-					enctype="multipart/form-data">
-					<table>
-						<tr>
-							<td>Inserta el ID:</td>
-							<td><input type="number" name="id" id="id" required></td>
-						</tr>
-						<tr>
-							<td><input type="button" onclick="validar()" value="Guardar"></td>
-						</tr>
-					</table>
-				</form>
+				<a href="altaNave.jsp">Dar de alta una nueva Nave</a>
 			</div>
-			<div class="formulario">
-				<h3>Listar</h3>
-				<table class="lista">
-					<tr>
-						<th>ID</th>
-						<th>Nombre</th>
-						<th>Capitan</th>
-						<th>Matricula</th>
-						<th>Tipo</th>
-						<th>Foto</th>
-					</tr>
-					<tr>
-					</tr>
-				</table>
-			</div>
-
-
 		</section>
 		<%@include file="/includes/aside.inc.jsp"%>
 		<%@include file="/includes/footer.inc.jsp"%>

@@ -6,11 +6,7 @@
 <link href="css/estilos.css" rel="stylesheet" type="text/css" />
 <meta charset="UTF-8">
 <title>Tripulantes</title>
-<script>
-	function pinchaboton() {
-		alert("No toques las cosas de tocar");
-	}
-</script>
+
 
 </head>
 <body>
@@ -44,7 +40,7 @@
 							name="foto" id="foto" required>
 						<li><label>Nave:</label><input type="text" maxlength="50"
 							name="nave" id="nave" required> 
-							<input type="submit"
+						<li>	<input type="submit"
 							maxlength="50" name="enviar" value="Guardar" required>
 					</ul>
 				</form>
