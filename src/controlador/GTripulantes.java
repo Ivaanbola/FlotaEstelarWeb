@@ -1,6 +1,9 @@
 package controlador;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -51,7 +54,18 @@ public class GTripulantes extends HttpServlet {
 		Tripulantes tripulante = new Tripulantes( nombre,  cargo,  sexo,  experiencia,  origen,  raza,  edad,
 				 foto,  nave);
 		
-		tripulante.insertar();
+		try {
+			tripulante.insertar();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		//request.setAttribute("listaTripu",lista);
+		
+		RequestDispatcher vista = request.getRequestDispatcher("tripulantes.jsp");
+		vista.forward(request, response);
+		
 		
 	}
 

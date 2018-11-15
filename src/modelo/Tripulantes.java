@@ -159,13 +159,9 @@ public class Tripulantes {
 		}
 	}
 
-	public void insertar() {
-		try {
-			DAOTripulantes.getInstance().insert(this);
-			System.out.println("Nuevo registro insertado");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+	public void insertar() throws SQLException {
+		DAOTripulantes.getInstance().insert(this);
+
 	}
 
 	public void borrar() {
@@ -176,7 +172,7 @@ public class Tripulantes {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void actualizar() {
 		try {
 			DAOTripulantes.getInstance().update(this);

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +8,7 @@
 <title>Formulario Misiones</title>
 </head>
 <body>
-<div id="contenedor">
+	<div id="contenedor">
 
 		<%@include file="/includes/header.inc.jsp"%>
 		<%@include file="/includes/nav.inc.jsp"%>
@@ -24,10 +24,10 @@
 							name="nombre" id="nombre" required>
 						<li><label>Nave:</label><input type="text" maxlength="50"
 							name="nave" id="nave" required>
-						<li><label>Descripcion:</label><input type="text" maxlength="50"
-							name="descripcion" id="descripcion" required>
-						<li>	<input type="submit"
-							maxlength="50" name="enviar" value="Guardar" required>
+						<li><label>Descripcion:</label><input type="text"
+							maxlength="50" name="descripcion" id="descripcion" required>
+						<li><input type="submit" maxlength="50" name="enviar"
+							value="Guardar" required>
 					</ul>
 				</form>
 			</div>

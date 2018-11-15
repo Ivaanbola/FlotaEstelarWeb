@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Contex>
+	<Resource name ="jdbc/flotaestelar"
+	driverClassName="com.mysql.jdbc.Driver"
+	type="javax.sql.Datasource"
+	password="root"
+	url="jdbc:mysql;//localhost:3306/flotaestelar"/>
+
+</Contex>
