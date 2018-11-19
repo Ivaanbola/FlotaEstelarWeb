@@ -159,8 +159,13 @@ public class Tripulantes {
 		}
 	}
 
-	public void insertar() throws SQLException {
-		DAOTripulantes.getInstance().insert(this);
+	public void insertar(){
+		try {
+			DAOTripulantes.getInstance().insert(this);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 

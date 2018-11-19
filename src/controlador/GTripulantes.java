@@ -54,11 +54,7 @@ public class GTripulantes extends HttpServlet {
 		Tripulantes tripulante = new Tripulantes( nombre,  cargo,  sexo,  experiencia,  origen,  raza,  edad,
 				 foto,  nave);
 		
-		try {
-			tripulante.insertar();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		tripulante.insertar();
 		
 		
 		//request.setAttribute("listaTripu",lista);
