@@ -65,7 +65,7 @@
 
 				</table>
 
-				<a href="altaTripulantes.jsp">Dar de alta a un tripulante</a>
+				<a href="GTripulantes?opcion=3&id=0">Dar de alta a un tripulante</a>
 			</div>
 
 		</section>

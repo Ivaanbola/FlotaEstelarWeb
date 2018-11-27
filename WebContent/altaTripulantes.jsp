@@ -22,7 +22,10 @@
 
 		<section>
 			<%
-				String id = request.getAttribute("id").toString();
+				String id = "0";
+				if (request.getAttribute("id") != null) {
+					id = request.getAttribute("id").toString();
+				}
 				Tripulantes tripu = new Tripulantes();
 				tripu.buscarID(Integer.parseInt(id));
 			%>
@@ -31,33 +34,56 @@
 				<h3>Insertar</h3>
 				<form name="usuario" action="GTripulantes" method="post">
 					<ul>
-
 						<li><label>Nombre:</label><input type="text" name="nombre"
-							id="nombre" value='<%out.print(tripu.getNombre());%>'>
+							id="nombre"
+							value='<%if (request.getAttribute("id") != null)
+				out.print(tripu.getNombre());%>'>
 						<li><label>Cargo:</label><input type="text" name="cargo"
-							id="cargo" value='<%out.print(tripu.getCargo());%>'>
+							id="cargo"
+							value='<%if (request.getAttribute("id") != null)
+				out.print(tripu.getCargo());%>'>
 						<li><label>Sexo:</label><input type="number" name="sexo"
-							id="sexo" value='<%out.print(tripu.getSexo());%>'>
+							id="sexo"
+							value='<%if (request.getAttribute("id") != null)
+				out.print(tripu.getSexo());%>'>
 						<li><label>Experiencia:</label><input type="number"
 							name="experiencia" id="experiencia"
-							value='<%out.print(tripu.getExperiencia());%>'>
+							value='<%if (request.getAttribute("id") != null)
+				out.print(tripu.getExperiencia());%>'>
 						<li><label>Origen:</label><input type="text" name="origen"
-							id="origen" value='<%out.print(tripu.getOrigen());%>'>
+							id="origen"
+							value='<%if (request.getAttribute("id") != null)
+				out.print(tripu.getOrigen());%>'>
 						<li><label>Raza:</label><input type="text" name="raza"
-							id="raza" value='<%out.print(tripu.getRaza());%>'>
+							id="raza"
+							value='<%if (request.getAttribute("id") != null)
+				out.print(tripu.getRaza());%>'>
 						<li><label>Edad:</label><input type="number" name="edad"
-							id="edad" value='<%out.print(tripu.getEdad());%>'>
+							id="edad"
+							value='<%if (request.getAttribute("id") != null)
+				out.print(tripu.getEdad());%>'>
 						<li><label>Foto:</label><input type="file" name="foto"
-							id="foto" value='<%out.print(tripu.getFoto());%>'>
+							id="foto"
+							value='<%if (request.getAttribute("id") != null)
+				out.print(tripu.getFoto());%>'>
 						<li><label>Nave:</label><input type="number" name="nave"
-							id="nave" value='<%out.print(tripu.getNave());%>'>
+							id="nave"
+							value='<%if (request.getAttribute("id") != null)
+				out.print(tripu.getNave());%>'>
+							<input type="hidden" name="opcion" value="1"> <input
+							type="hidden" name="id" id="id"
+							value='<%if (request.getAttribute("id") != null)
+				out.print(tripu.getId());%>'>
 						<li><input type="submit" name="enviar" value="Guardar">
 					</ul>
 				</form>
-				<a href="tripulantes.jsp">Volver a la lista</a> <a
-					href="GTripulantes?opcion=2&id=<%=tripu.getId()%>">Borrar</a>
-			</div>
+				<a href="tripulantes.jsp">Volver a la lista</a>
+				<%
+					if (request.getAttribute("id") != null)
+						out.print("<a href='GTripulantes?opcion=2&id=" + tripu.getId() + "'>Borrar</a>");
+				%>
 
+			</div>
 		</section>
 		<%@include file="/includes/aside.inc.jsp"%>
 		<%@include file="/includes/footer.inc.jsp"%>

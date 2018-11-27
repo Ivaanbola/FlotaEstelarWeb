@@ -1,9 +1,7 @@
 
 
 <%@include file="proteccion.jsp"%>
-<%
-	out.print(" <a href='GTripulantes?opcion=5'>Cerrar sesion</a>");
-%>
+
 <header>
 	<div class="cabder">
 
@@ -16,6 +14,11 @@
 	<div class="cabizq">
 
 		<div class="logosredes">
+			<ul>
+				<%
+					out.print(" <a href='GTripulantes?opcion=5'>Cerrar sesion</a>");
+				%>
+			</ul>
 			<ul>
 				<li><a target="_blank" href="https://www.facebook.com/NASA/"><img
 						src="img/descarga (1).png"> </a></li>

@@ -60,6 +60,7 @@ public class GTripulantes extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 		response.setContentType("text/htmlUTF-8");
 		this.inicio(request, response);
 	}
@@ -76,6 +77,7 @@ public class GTripulantes extends HttpServlet {
 
 	private void nuevoTripulante(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		String nombre = request.getParameter("nombre");
 		String cargo = request.getParameter("cargo");
 		int sexo = Integer.parseInt(request.getParameter("sexo"));
@@ -87,11 +89,16 @@ public class GTripulantes extends HttpServlet {
 		int nave = Integer.parseInt(request.getParameter("nave"));
 
 		Tripulantes tripulante = new Tripulantes(nombre, cargo, sexo, experiencia, origen, raza, edad, foto, nave);
-
-		tripulante.insertar();
+		if (request.getParameter("id") != "") {
+			int id = Integer.parseInt(request.getParameter("id"));
+			tripulante.setId(id);
+			tripulante.actualizar();
+		} else
+			tripulante.insertar();
 
 		// request.setAttribute("listaTripu",lista);
 		response.sendRedirect("tripulantes.jsp");
+
 		/*
 		 * RequestDispatcher vista = request.getRequestDispatcher("tripulantes.jsp");
 		 * vista.forward(request, response);
@@ -101,7 +108,7 @@ public class GTripulantes extends HttpServlet {
 
 	private void borrarTripulante(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Tripulantes tripu= new Tripulantes();
+		Tripulantes tripu = new Tripulantes();
 		tripu.buscarID(Integer.parseInt(request.getParameter("id")));
 		tripu.borrar();
 		response.sendRedirect("tripulantes.jsp");
@@ -110,15 +117,18 @@ public class GTripulantes extends HttpServlet {
 
 	private void buscarTripulante(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		int id;
 
-
-		Tripulantes tripu= new Tripulantes();
-		tripu.buscarID(Integer.parseInt(request.getParameter("id")));
-
-		request.setAttribute("id", tripu.getId());
-		RequestDispatcher vista = request.getRequestDispatcher("altaTripulantes.jsp");
-		vista.forward(request, response);
-		
+		if (Integer.parseInt(request.getParameter("id")) != 0) {
+			id = Integer.parseInt(request.getParameter("id"));
+			request.setAttribute("id", id);
+			RequestDispatcher vista = request.getRequestDispatcher("altaTripulantes.jsp");
+			vista.forward(request, response);
+		} else {
+			request.setAttribute("id", null);
+			RequestDispatcher vista = request.getRequestDispatcher("altaTripulantes.jsp");
+			vista.forward(request, response);
+		}
 
 	}
 

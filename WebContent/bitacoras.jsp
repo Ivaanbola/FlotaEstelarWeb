@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="controlador.GBitacoras"%>
+<%@page import="modelo.Bitacoras"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,10 +20,32 @@
 
 		<section>
 
-				<div class="formulario">
+			<div class="formulario">
 				<h1>Lista Bitacoras</h1>
+				<table class="lista">
+					<tr>
+						<th>Nave</th>
+						<th>Fecha</th>
+						<th>Audio</th>
+					</tr>
+					<%
+						Bitacoras bitacoras = new Bitacoras();
+						for (Bitacoras p : bitacoras.listarBitacoras()) {
+					%>
+					<tr>
+						<td><%=p.getNave()%></td>
+						<td><%=p.getFecha()%></td>
+						<td><%=p.getAudio()%></td>
+						<td><a href="GBitacoras?opcion=3&id=<%=p.getId()%>">Editar</a></td>
+					</tr>
+					<%
+						}
+					%>
+				</table>
 
-				<a href="altaBitacoras.jsp">Dar de alta un nuevo Bitacoras</a>
+
+
+				<a href="GBitacoras?opcion=3&id=0">Dar de alta un nuevo Bitacoras</a>
 			</div>
 
 
