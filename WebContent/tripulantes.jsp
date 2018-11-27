@@ -26,7 +26,7 @@
 
 			<div class="formulario">
 				<h1>Lista tripulantes</h1>
-				<table class="listaTripu">
+				<table>
 					<tr>
 						<th>Nombre</th>
 						<th>Cargo</th>
@@ -40,9 +40,10 @@
 					</tr>
 
 					<%
-						ArrayList<Tripulantes> lista = DAOTripulantes.getInstance().listaTripulantes();
-						for (Tripulantes p : lista) {
+						Tripulantes tripulantes = new Tripulantes();
+						for (Tripulantes p : tripulantes.listarTripulantes()) {
 					%>
+
 					<tr>
 						<td><%=p.getNombre()%></td>
 						<td><%=p.getCargo()%></td>
@@ -53,7 +54,7 @@
 						<td><%=p.getEdad()%></td>
 						<td><%=p.getFoto()%></td>
 						<td><%=p.getNave()%></td>
-						<td><a href="altaTripulantes.jsp<%p.getId();%>">Editar</a></td>
+						<td><a href="GTripulantes?opcion=3&id=<%=p.getId()%>">Editar</a></td>
 					</tr>
 
 					<%

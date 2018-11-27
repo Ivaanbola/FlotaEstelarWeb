@@ -19,7 +19,7 @@
 						title="espacio">
 				</div>
 			</div>
-			<div class="footersection">
+			<div>
 				<p>Before the movie Star Trek: First Contact, the Borg exhibited
 					no hierarchical command structure. First Contact introduced the
 					Borg Queen, who is not named as such in the film, but is referred
