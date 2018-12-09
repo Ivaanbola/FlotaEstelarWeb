@@ -2,12 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@page import="controlador.GBitacoras"%>
 <%@page import="modelo.Bitacoras"%>
+<%@page import="modelo.Nave"%>
 <!DOCTYPE html>
 <html>
 <head>
 <link href="css/estilos.css" rel="stylesheet" type="text/css" />
 <meta charset="UTF-8">
-<link href="css/estilos.css" rel="stylesheet" type="text/css" />
 <title>Bitacoras</title>
 
 
@@ -30,11 +30,19 @@
 					</tr>
 					<%
 						Bitacoras bitacoras = new Bitacoras();
-						for (Bitacoras p : bitacoras.listarBitacoras()) {
+						Nave nave = new Nave();
+						if (bitacoras.listarBitacoras() != null)
+							for (Bitacoras p : bitacoras.listarBitacoras()) {
+								nave.buscarID(p.getNave());
 					%>
 					<tr>
-						<td><%=p.getNave()%></td>
-						<td><%=p.getFecha()%></td>
+						<td>
+							<%
+								if (nave.getNombre() != null)
+											out.print(nave.getNombre());
+							%>
+						</td>
+						<td><%=p.fechaFormatddmmyyyy()%></td>
 						<td><%=p.getAudio()%></td>
 						<td><a href="GBitacoras?opcion=3&id=<%=p.getId()%>">Editar</a></td>
 					</tr>
@@ -45,7 +53,8 @@
 
 
 
-				<a href="GBitacoras?opcion=3&id=0">Dar de alta un nuevo Bitacoras</a>
+				<a href="GBitacoras?opcion=3&id=0">Dar de alta un nuevo
+					Bitacoras</a>
 			</div>
 
 

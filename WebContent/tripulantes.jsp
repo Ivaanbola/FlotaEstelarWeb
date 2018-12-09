@@ -3,17 +3,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="modelo.Tripulantes"%>
+<%@ page import="modelo.Nave"%>
+<%@ page import="modelo.Sexo"%>
 <!DOCTYPE html>
 <html>
 <head>
 <link href="css/estilos.css" rel="stylesheet" type="text/css" />
 <meta charset="UTF-8">
 <title>Tripulantes</title>
-<script>
-	function pinchaboton() {
-		alert("No toques las cosas de tocar");
-	}
-</script>
 
 </head>
 <body>
@@ -41,19 +38,34 @@
 
 					<%
 						Tripulantes tripulantes = new Tripulantes();
-						for (Tripulantes p : tripulantes.listarTripulantes()) {
+						Nave nave = new Nave();
+						Sexo sexo = new Sexo();
+						if (tripulantes.listarTripulantes() != null)
+							for (Tripulantes p : tripulantes.listarTripulantes()) {
+								nave.buscarID(p.getNave());
+								sexo.buscarID(p.getSexo());
 					%>
 
 					<tr>
 						<td><%=p.getNombre()%></td>
 						<td><%=p.getCargo()%></td>
-						<td><%=p.getSexo()%></td>
+						<td>
+							<%
+								if (sexo.getNombre() != null)
+											out.print(sexo.getNombre());
+							%>
+						</td>
 						<td><%=p.getExperiencia()%></td>
 						<td><%=p.getOrigen()%></td>
 						<td><%=p.getRaza()%></td>
 						<td><%=p.getEdad()%></td>
 						<td><%=p.getFoto()%></td>
-						<td><%=p.getNave()%></td>
+						<td>
+							<%
+								if (nave.getNombre() != null)
+											out.print(nave.getNombre());
+							%>
+						</td>
 						<td><a href="GTripulantes?opcion=3&id=<%=p.getId()%>">Editar</a></td>
 					</tr>
 

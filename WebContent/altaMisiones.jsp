@@ -1,5 +1,11 @@
+<%@page import="com.sun.javafx.fxml.ParseTraceElement"%>
+<%@page
+	import="javax.security.auth.message.callback.PrivateKeyCallback.Request"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="controlador.GMisiones"%>
+<%@page import="modelo.Misiones"%>
+<%@page import="modelo.Nave"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,22 +20,53 @@
 		<%@include file="/includes/nav.inc.jsp"%>
 
 		<section>
+			<%
+				String id = "0";
+				if (request.getAttribute("id") != null) {
+					id = request.getAttribute("id").toString();
+				}
+				Misiones m = new Misiones();
+				m.buscarID(Integer.parseInt(id));
+				Nave nave = new Nave();
+				nave.buscarID(Integer.parseInt(id));
+			%>
 
 			<div class="formulario">
 				<h3>Insertar</h3>
-				<form name="usuario" action="/GTripulantes" method="post"
-					enctype="multipart/form-data">
+				<form name="usuario" action="GMisiones" method="post">
 					<ul>
-						<li><label>Nombre:</label><input type="text" maxlength="50"
-							name="nombre" id="nombre" required>
-						<li><label>Nave:</label><input type="text" maxlength="50"
-							name="nave" id="nave" required>
+						<li><label>Nombre:</label><input type="text" name="nombre"
+							id="nombre"
+							value='<%if (request.getAttribute("id") != null)
+				out.print(m.getNombre());%>'>
+						<li><label>Nave:</label><select name="nave" id="nave">
+								<%
+									if (nave.listarNaves() != null) {
+										out.print("<option value=0>Seleccion</option>");
+										for (Nave p : nave.listarNaves()) {
+											out.print(" <option value=" + p.getId() + ">" + p.getNombre() + "</option>");
+										}
+									} else
+										out.print(" <option>No hay naves añadidas</option>");
+								%>
+
+						</select>
 						<li><label>Descripcion:</label><input type="text"
-							maxlength="50" name="descripcion" id="descripcion" required>
-						<li><input type="submit" maxlength="50" name="enviar"
-							value="Guardar" required>
+							name="descripcion" id="descripcion"
+							value='<%if (request.getAttribute("id") != null)
+				out.print(m.getDescripcion());%>'>
+							<input type="hidden" name="id" id="id"
+							value='<%if (request.getAttribute("id") != null)
+				out.print(m.getId());%>'>
+							<input type="hidden" name="opcion" value="1">
+						<li><input type="submit" name="enviar" value="Guardar">
 					</ul>
 				</form>
+				<a href="misiones.jsp">Volver a la lista</a>
+				<%
+					if (request.getAttribute("id") != null)
+						out.print("<a href='GMisiones?opcion=2&id=" + m.getId() + "'>Borrar</a>");
+				%>
 			</div>
 
 		</section>

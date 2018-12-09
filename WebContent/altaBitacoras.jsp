@@ -5,6 +5,7 @@
 	pageEncoding="UTF-8"%>
 <%@page import="controlador.GBitacoras"%>
 <%@page import="modelo.Bitacoras"%>
+<%@page import="modelo.Nave"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,25 +21,37 @@
 
 		<section>
 			<%
+			
+			
 				String id = "0";
 				if (request.getAttribute("id") != null) {
 					id = request.getAttribute("id").toString();
 				}
 				Bitacoras bitacoras = new Bitacoras();
 				bitacoras.buscarID(Integer.parseInt(id));
+				Nave nave = new Nave();
+				nave.buscarID(Integer.parseInt(id));
 			%>
 			<div class="formulario">
 				<h3>Insertar</h3>
 				<form name="usuario" action="GBitacoras" method="post">
 					<ul>
-						<li><label>Nave:</label><input type="text" name="nave"
-							id="nave"
-							value='<%if (request.getAttribute("id") != null)
-				out.print(bitacoras.getNave());%>'>
+						<li><label>Nave:</label><select name="nave" id="nave">
+								<%
+									if (nave.listarNaves() != null) {
+										out.print("<option value=0>Seleccion</option>");
+										for (Nave p : nave.listarNaves()) {
+											out.print(" <option value=" + p.getId() + ">" + p.getNombre() + "</option>");
+										}
+									} else
+										out.print(" <option>No hay naves añadidas</option>");
+								%>
+
+						</select>
 						<li><label>Fecha:</label><input type="text" name="fecha"
 							id="fecha" placeholder="dd/mm/yyyy"
 							value='<%if (request.getAttribute("id") != null)
-				out.print(bitacoras.getFecha());%>'>
+				out.print(bitacoras.fechaFormatddmmyyyy());%>'>
 						<li><label>Audio:</label><input type="file" name="audio"
 							id="audio"
 							value='<%if (request.getAttribute("id") != null)

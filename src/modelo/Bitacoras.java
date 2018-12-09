@@ -1,7 +1,9 @@
 package modelo;
 
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 
@@ -12,6 +14,8 @@ public class Bitacoras {
 	private int nave;
 	private LocalDate fecha;
 	private String audio;
+	DateTimeFormatter formatters = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
 
 	public Bitacoras() {
 
@@ -50,6 +54,10 @@ public class Bitacoras {
 		return fecha;
 	}
 
+	public String fechaFormatddmmyyyy() {
+		return formatters.format(fecha);
+	}
+	
 	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
 	}

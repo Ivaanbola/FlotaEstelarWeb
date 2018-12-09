@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="controlador.GMisiones"%>
+<%@page import="modelo.Misiones"%>
+<%@page import="modelo.Nave"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,8 +22,38 @@
 
 			<div class="formulario">
 				<h1>Lista Misiones</h1>
+				<table class="lista">
+					<tr>
+						<th>Nombre</th>
+						<th>Nave</th>
+						<th>Descripcion</th>
+					</tr>
+					<%
+						Misiones misiones = new Misiones();
+						Nave nave = new Nave();
+						if (misiones.listarMisiones() != null)
+							for (Misiones p : misiones.listarMisiones()) {
+								nave.buscarID(p.getNave());
+					%>
+					<tr>
+						<td><%=p.getNombre()%></td>
+						<td>
+							<%
+								if (nave.getNombre() != null)
+											out.print(nave.getNombre());
+							%>
+						</td>
+						<td><%=p.getDescripcion()%></td>
+						<td><a href="GMisiones?opcion=3&id=<%=p.getId()%>">Editar</a></td>
+					</tr>
+					<%
+						}
+					%>
+				</table>
 
-				<a href="altaMisiones.jsp">Dar de alta una nueva mision</a>
+
+
+				<a href="GMisiones?opcion=3&id=0">Dar de alta una nueva mision</a>
 			</div>
 
 		</section>

@@ -3,6 +3,8 @@
 	import="javax.security.auth.message.callback.PrivateKeyCallback.Request"%>
 <%@page import="controlador.GTripulantes"%>
 <%@page import="modelo.Tripulantes"%>
+<%@page import="modelo.Nave"%>
+<%@page import="modelo.Sexo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -28,11 +30,15 @@
 				}
 				Tripulantes tripu = new Tripulantes();
 				tripu.buscarID(Integer.parseInt(id));
+				Nave nave = new Nave();
+				nave.buscarID(Integer.parseInt(id));
+				Sexo sexo = new Sexo();
 			%>
 
 			<div class="formulario">
 				<h3>Insertar</h3>
-				<form name="usuario" action="GTripulantes" method="post">
+				<form name="usuario" action="GTripulantes" method="post"
+					enctype="multipart/form-data">
 					<ul>
 						<li><label>Nombre:</label><input type="text" name="nombre"
 							id="nombre"
@@ -42,10 +48,18 @@
 							id="cargo"
 							value='<%if (request.getAttribute("id") != null)
 				out.print(tripu.getCargo());%>'>
-						<li><label>Sexo:</label><input type="number" name="sexo"
-							id="sexo"
-							value='<%if (request.getAttribute("id") != null)
-				out.print(tripu.getSexo());%>'>
+						<li><label>Sexo:</label><select name="sexo" id="sexo"
+							required>
+								<%
+									if (sexo.listarSexo() != null) {
+										out.print("<option value=0>Seleccion</option>");
+										for (Sexo p : sexo.listarSexo()) {
+											out.print(" <option value=" + p.getId() + ">" + p.getNombre() + "</option>");
+										}
+									}
+								%>
+
+						</select>
 						<li><label>Experiencia:</label><input type="number"
 							name="experiencia" id="experiencia"
 							value='<%if (request.getAttribute("id") != null)
@@ -66,14 +80,23 @@
 							id="foto"
 							value='<%if (request.getAttribute("id") != null)
 				out.print(tripu.getFoto());%>'>
-						<li><label>Nave:</label><input type="number" name="nave"
-							id="nave"
-							value='<%if (request.getAttribute("id") != null)
-				out.print(tripu.getNave());%>'>
-							<input type="hidden" name="opcion" value="1"> <input
+						<li><label>Nave:</label><select name="nave" id="nave">
+								<%
+									if (nave.listarNaves() != null) {
+										out.print("<option value=0>Seleccion</option>");
+										for (Nave p : nave.listarNaves()) {
+											out.print(" <option value=" + p.getId() + ">" + p.getNombre() + "</option>");
+										}
+									} else
+										out.print(" <option>No hay naves añadidas</option>");
+								%>
+
+						</select> <input type="hidden" name="opcion" value="1"> <input
 							type="hidden" name="id" id="id"
-							value='<%if (request.getAttribute("id") != null)
-				out.print(tripu.getId());%>'>
+							value="<%if (request.getAttribute("id") != null)
+				out.print(tripu.getId());
+			else
+				out.print(0);%>">
 						<li><input type="submit" name="enviar" value="Guardar">
 					</ul>
 				</form>
