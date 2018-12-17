@@ -2,6 +2,7 @@ package controlador;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -82,25 +83,34 @@ public class GTripulantes extends HttpServlet {
 
 	private void nuevoTripulante(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		/*
-		 * String contexto = request.getServletContext().getRealPath("/"); Part archivo
-		 * = request.getPart("foto");
-		 * 
-		 * System.out.println("part.getContentType : " + archivo.getContentType());
-		 * System.out.println("part.getSize : " + archivo.getSize());
-		 * System.out.println("part.getName : " + archivo.getName());
-		 * System.out.println("part.getSubmittedFileName : " +
-		 * archivo.getSubmittedFileName()); System.out.println(contexto); String nombre
-		 * = archivo.getSubmittedFileName();
-		 * 
-		 * archivo.write(contexto + File.separator + UPLOAD_DIR + nombre);
-		 * request.setAttribute("message", "File uploaded successfully (" + contexto +
-		 * UPLOAD_DIR + File.separator + nombre + ")!"); request.setAttribute("ruta",
-		 * UPLOAD_DIR + nombre);
-		 * 
-		 * getServletContext().getRequestDispatcher("/response.jsp").forward(request,
-		 * response);
-		 */
+
+		String contexto = request.getServletContext().getRealPath("/");
+		Part archivo = request.getPart("foto");
+
+		// System.out.println("part.getContentType : " + archivo.getContentType());
+		// System.out.println("part.getSize : " + archivo.getSize());
+		// System.out.println("part.getName : " + archivo.getName());
+		// System.out.println("part.getSubmittedFileName : " +
+		// archivo.getSubmittedFileName());
+		// System.out.println("Contexto:" + contexto);
+		String nombreFoto = Paths.get(archivo.getSubmittedFileName()).getFileName().toString();
+
+//	-------------------------------------------------------------------------------------------------------
+		if (nombreFoto.length() > 0) {
+			System.out.println("nombre foto controlando fallo: "+ nombreFoto.length());
+			archivo.write(contexto + UPLOAD_DIR + File.separator + nombreFoto);
+		}
+		// request.setAttribute("message",
+		// "File uploaded successfully (" + contexto + UPLOAD_DIR + File.separator +
+		// nombreFoto + ")!");
+		// request.setAttribute("ruta", UPLOAD_DIR + File.separator + nombreFoto);
+
+		String rutafoto = UPLOAD_DIR + File.separator + nombreFoto;
+		if (nombreFoto == null)
+			rutafoto = "";
+
+		// getServletContext().getRequestDispatcher("/response.jsp").forward(request,
+		// response);
 
 		String nombre = request.getParameter("nombre");
 		String cargo = request.getParameter("cargo");
@@ -109,11 +119,10 @@ public class GTripulantes extends HttpServlet {
 		String origen = request.getParameter("origen");
 		String raza = request.getParameter("raza");
 		int edad = Integer.parseInt(request.getParameter("edad"));
-		//String foto = request.getParameter("foto");
+		// String foto =request.getParameter("foto");
 		int nave = Integer.parseInt(request.getParameter("nave"));
-		
 
-		Tripulantes tripulante = new Tripulantes(nombre, cargo, sexo, experiencia, origen, raza, edad, "", nave);
+		Tripulantes tripulante = new Tripulantes(nombre, cargo, sexo, experiencia, origen, raza, edad, rutafoto, nave);
 		if (Integer.parseInt(request.getParameter("id")) != 0) {
 			int id = Integer.parseInt(request.getParameter("id"));
 			tripulante.setId(id);
@@ -124,8 +133,10 @@ public class GTripulantes extends HttpServlet {
 		// request.setAttribute("listaTripu",lista);
 		response.sendRedirect("tripulantes.jsp");
 
-		/*RequestDispatcher vista = request.getRequestDispatcher("tripulantes.jsp");
-		vista.forward(request, response);*/
+		/*
+		 * RequestDispatcher vista = request.getRequestDispatcher("tripulantes.jsp");
+		 * vista.forward(request, response);
+		 */
 
 	}
 

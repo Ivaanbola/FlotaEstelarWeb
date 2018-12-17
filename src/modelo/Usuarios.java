@@ -6,7 +6,7 @@ import dao.DAOUsuarios;
 
 public class Usuarios {
 	private String usuario;
-	private String contraseña;
+	private String contrasena;
 
 	public Usuarios() {
 
@@ -14,7 +14,7 @@ public class Usuarios {
 	
 	public Usuarios( String usuario, String contraseña) {
 		this.usuario = usuario;
-		this.contraseña = contraseña;
+		this.contrasena = contraseña;
 	}
 
 	public String getUsuario() {
@@ -25,18 +25,18 @@ public class Usuarios {
 		this.usuario = usuario;
 	}
 
-	public String getContraseña() {
-		return contraseña;
+	public String getContrasena() {
+		return contrasena;
 	}
 
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
 	}
 
-	public static boolean buscar(String nombre, String contraseña) {
+	public static boolean buscar(String nombre, String contrasena) {
 		Usuarios e = null;
 		try {
-			e = DAOUsuarios.getInstance().buscar(nombre, contraseña);
+			e = DAOUsuarios.getInstance().buscar(nombre, contrasena);
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		}

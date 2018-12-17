@@ -27,7 +27,7 @@ public class DAOBitacoras {
 	
 	public void insert(Bitacoras n) throws SQLException {
 		PreparedStatement ps = con
-				.prepareStatement("INSERT INTO bitacoras (nave, fecha, audio) VALUES (?,?,?)");
+				.prepareStatement("INSERT INTO ussBitacoras (nave, fecha, audio) VALUES (?,?,?)");
 		ps.setInt(1, n.getNave());
 		ps.setDate(2, Date.valueOf(n.getFecha()));
 		ps.setString(3, n.getAudio());
@@ -36,7 +36,7 @@ public class DAOBitacoras {
 	}
 	
 	public ArrayList<Bitacoras> listaBitacoras() throws SQLException {
-		PreparedStatement ps = con.prepareStatement("SELECT * from bitacoras");
+		PreparedStatement ps = con.prepareStatement("SELECT * from ussBitacoras");
 		ResultSet rs = ps.executeQuery();
 
 		ArrayList<Bitacoras> result = null;
@@ -53,7 +53,7 @@ public class DAOBitacoras {
 	}
 	
 	public Bitacoras buscarID(int id) throws SQLException {
-		PreparedStatement ps = con.prepareStatement("SELECT * FROM bitacoras WHERE id = ?");
+		PreparedStatement ps = con.prepareStatement("SELECT * FROM ussBitacoras WHERE id = ?");
 		ps.setInt(1, id);
 		ResultSet rs = ps.executeQuery();
 		Bitacoras result = null;
@@ -74,7 +74,7 @@ public class DAOBitacoras {
 		if (id <= 0)
 			return;
 
-		PreparedStatement ps = con.prepareStatement("DELETE FROM bitacoras WHERE id = ?");
+		PreparedStatement ps = con.prepareStatement("DELETE FROM ussBitacoras WHERE id = ?");
 		ps.setInt(1, id);
 		ps.executeUpdate();
 		ps.close();
@@ -84,7 +84,7 @@ public class DAOBitacoras {
 		if (n.getId() == 0)
 			return;
 		PreparedStatement ps = con.prepareStatement(
-				"UPDATE bitacoras SET nave = ?, fecha = ?, audio = ? WHERE id = ?");
+				"UPDATE ussBitacoras SET nave = ?, fecha = ?, audio = ? WHERE id = ?");
 		ps.setInt(1, n.getNave());
 		ps.setDate(2, Date.valueOf(n.getFecha()));
 		ps.setString(3, n.getAudio());

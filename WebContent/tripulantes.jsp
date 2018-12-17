@@ -59,7 +59,7 @@
 						<td><%=p.getOrigen()%></td>
 						<td><%=p.getRaza()%></td>
 						<td><%=p.getEdad()%></td>
-						<td><%=p.getFoto()%></td>
+						<td><img src=<%=p.getFoto() %>></td>
 						<td>
 							<%
 								if (nave.getNombre() != null)

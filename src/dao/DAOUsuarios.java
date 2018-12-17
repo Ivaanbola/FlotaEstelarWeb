@@ -24,13 +24,13 @@ public class DAOUsuarios {
 	}
 
 	public Usuarios buscar(String nombre, String contraseña) throws SQLException {
-		PreparedStatement ps = con.prepareStatement("SELECT * FROM usuarios WHERE nombre = ? and contraseña = ?");
+		PreparedStatement ps = con.prepareStatement("SELECT * FROM ussUsuarios WHERE nombre = ? and contrasena = ?");
 		ps.setString(1, nombre);
 		ps.setString(2, contraseña);
 		ResultSet rs = ps.executeQuery();
 		Usuarios result = null;
 		if (rs.next()) {
-			result = new Usuarios(rs.getString("nombre"), rs.getString("contraseña"));
+			result = new Usuarios(rs.getString("nombre"), rs.getString("contrasena"));
 		}
 		rs.close();
 		ps.close();
