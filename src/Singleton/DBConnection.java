@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class DBConnection {
-	private static final String JDBC_URL = "jdbc:mysql://halifaxtraining:3306/ciberkaos003";
+	private static final String JDBC_URL = "jdbc:mysql://halifaxtraining.es:3306/ciberkaos003";
 	private static Connection instance = null;
 
 	private DBConnection() {
