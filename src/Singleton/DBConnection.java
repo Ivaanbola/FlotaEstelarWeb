@@ -18,7 +18,7 @@ public class DBConnection {
 		if (instance == null) {
 			Properties props = new Properties();
 			props.put("user", "uss003");
-			props.put("pasword", "pass003");
+			props.put("password", "pass003");
 			instance = DriverManager.getConnection(JDBC_URL, props);
 			crearTablas();
 		}
@@ -93,14 +93,14 @@ public class DBConnection {
 
 	public static void insertHombre() throws SQLException {
 		PreparedStatement ps = getConnection().prepareStatement(
-				"INSERT INTO usssexo (nombre) SELECT * FROM (SELECT 'Hombre') as tmp WHERE NOT EXISTS (SELECT nombre FROM usssexo WHERE nombre = 'Hombre') LIMIT 1;");
+				"INSERT INTO ussSexo (nombre) SELECT * FROM (SELECT 'Hombre') as tmp WHERE NOT EXISTS (SELECT nombre FROM ussSexo WHERE nombre = 'Hombre') LIMIT 1;");
 		ps.executeUpdate();
 		ps.close();
 	}
 
 	public static void insertMujer() throws SQLException {
 		PreparedStatement ps = getConnection().prepareStatement(
-				"INSERT INTO usssexo (nombre) SELECT * FROM (SELECT 'Mujer') as tmp WHERE NOT EXISTS (SELECT nombre FROM usssexo WHERE nombre = 'Mujer') LIMIT 1; ");
+				"INSERT INTO ussSexo (nombre) SELECT * FROM (SELECT 'Mujer') as tmp WHERE NOT EXISTS (SELECT nombre FROM ussSexo WHERE nombre = 'Mujer') LIMIT 1; ");
 		ps.executeUpdate();
 		ps.close();
 	}

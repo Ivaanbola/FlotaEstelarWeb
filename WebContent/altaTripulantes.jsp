@@ -88,7 +88,7 @@
 											out.print(" <option value=" + p.getId() + ">" + p.getNombre() + "</option>");
 										}
 									} else
-										out.print(" <option>No hay naves añadidas</option>");
+										out.print(" <option>No hay naves añadidas</option><a href=altaNave.jsp>Dar de alta una nueva mision</a>");
 								%>
 
 						</select> <input type="hidden" name="opcion" value="1"> <input

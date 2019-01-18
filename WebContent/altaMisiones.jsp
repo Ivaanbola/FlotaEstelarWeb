@@ -41,13 +41,13 @@
 				out.print(m.getNombre());%>'>
 						<li><label>Nave:</label><select name="nave" id="nave">
 								<%
-									if (nave.listarNaves() != null) {
-										out.print("<option value=0>Seleccion</option>");
-										for (Nave p : nave.listarNaves()) {
-											out.print(" <option value=" + p.getId() + ">" + p.getNombre() + "</option>");
-										}
-									} else
-										out.print(" <option>No hay naves añadidas</option>");
+								if (nave.listarNaves() != null) {
+									out.print("<option value=0>Seleccion</option>");
+									for (Nave p : nave.listarNaves()) {
+										out.print(" <option value=" + p.getId() + ">" + p.getNombre() + "</option>");
+									}
+								} else
+									out.print(" <option>No hay naves añadidas</option><a href=altaNave.jsp>Dar de alta una nueva mision</a>");
 								%>
 
 						</select>

@@ -1,13 +1,17 @@
 package controlador;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import modelo.Nave;
 
@@ -15,8 +19,10 @@ import modelo.Nave;
  * Servlet implementation class GNave
  */
 @WebServlet("/GNave")
+@MultipartConfig
 public class GNave extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final String UPLOAD_DIR = "fotos";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -69,14 +75,39 @@ public class GNave extends HttpServlet {
 
 	private void nuevaNave(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		String contexto = request.getServletContext().getRealPath("/");
+		Part archivo = request.getPart("foto");
+
+		// System.out.println("part.getContentType : " + archivo.getContentType());
+		// System.out.println("part.getSize : " + archivo.getSize());
+		// System.out.println("part.getName : " + archivo.getName());
+		// System.out.println("part.getSubmittedFileName : " +
+		// archivo.getSubmittedFileName());
+		// System.out.println("Contexto:" + contexto);
+		String nombreFoto = Paths.get(archivo.getSubmittedFileName()).getFileName().toString();
+
+//	-------------------------------------------------------------------------------------------------------
+		if (nombreFoto.length() > 0) {
+			System.out.println("nombre foto controlando fallo: "+ nombreFoto.length());
+			archivo.write(contexto + UPLOAD_DIR + File.separator + nombreFoto);
+		}
+		// request.setAttribute("message",
+		// "File uploaded successfully (" + contexto + UPLOAD_DIR + File.separator +
+		// nombreFoto + ")!");
+		// request.setAttribute("ruta", UPLOAD_DIR + File.separator + nombreFoto);
+
+		String rutafoto = UPLOAD_DIR + File.separator + nombreFoto;
+		if (nombreFoto == null)
+			rutafoto = "";
 
 		String nombre = request.getParameter("nombre");
 		String capitan = request.getParameter("capitan");
 		String matricula = request.getParameter("matricula");
 		String tipo = request.getParameter("tipo");
-		String foto = request.getParameter("foto");
+		//String foto = request.getParameter("foto");
 
-		Nave nave = new Nave(nombre, capitan, matricula, tipo, foto);
+		Nave nave = new Nave(nombre, capitan, matricula, tipo, rutafoto);
 		if (request.getParameter("id") != "") {
 			int id = Integer.parseInt(request.getParameter("id"));
 			nave.setId(id);

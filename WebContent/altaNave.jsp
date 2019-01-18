@@ -29,7 +29,8 @@
 			%>
 			<div class="formulario">
 				<h3>Insertar</h3>
-				<form name="usuario" action="GNave" method="post">
+				<form name="usuario" action="GNave" method="post"
+					enctype="multipart/form-data">
 					<ul>
 						<li><label>Nombre:</label><input type="text" name="nombre"
 							id="nombre"
