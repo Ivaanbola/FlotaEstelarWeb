@@ -26,7 +26,7 @@ public class DAOSexo {
 	}
 
 	public ArrayList<Sexo> listaSexo() throws SQLException {
-		PreparedStatement ps = con.prepareStatement("SELECT * from ussSexo");
+		PreparedStatement ps = con.prepareStatement("SELECT * from usssexo");
 		ResultSet rs = ps.executeQuery();
 
 		ArrayList<Sexo> result = null;
@@ -42,7 +42,7 @@ public class DAOSexo {
 	}
 
 	public Sexo buscarID(int id) throws SQLException {
-		PreparedStatement ps = con.prepareStatement("SELECT * FROM ussSexo WHERE id = ?");
+		PreparedStatement ps = con.prepareStatement("SELECT * FROM usssexo WHERE id = ?");
 		ps.setInt(1, id);
 		ResultSet rs = ps.executeQuery();
 		Sexo result = null;

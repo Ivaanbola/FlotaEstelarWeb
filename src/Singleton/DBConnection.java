@@ -36,7 +36,7 @@ public class DBConnection {
 	}
 
 	public static void tablaTripu() throws SQLException {
-		PreparedStatement ps = getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS ussTripulantes ("
+		PreparedStatement ps = getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS usstripulantes ("
 				+ "id int auto_increment primary key ," + "nombre varchar(255)," + "cargo varchar(255)," + "sexo int,"
 				+ "experiencia int," + "origen varchar(255)," + "raza varchar(255)," + "edad int,"
 				+ "foto varchar(255)," + "nave int" + ");");
@@ -46,14 +46,14 @@ public class DBConnection {
 
 	public static void tablaUsuarios() throws SQLException {
 		PreparedStatement ps = getConnection()
-				.prepareStatement("CREATE TABLE IF NOT EXISTS ussUsuarios (" + "  id int auto_increment primary key,"
+				.prepareStatement("CREATE TABLE IF NOT EXISTS ussusuarios (" + "  id int auto_increment primary key,"
 						+ "  nombre varchar(255) NOT NULL," + "  contrasena varchar(255) NOT NULL" + ");");
 		ps.executeUpdate();
 		ps.close();
 	}
 
 	public static void tablaNave() throws SQLException {
-		PreparedStatement ps = getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS ussNave ("
+		PreparedStatement ps = getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS ussnave ("
 				+ "  id int auto_increment primary key ," + "  nombre varchar(255) NOT NULL,"
 				+ "  capitan varchar(255) NOT NULL," + "  matricula varchar(255) NOT NULL,"
 				+ "  tipo varchar(255) NOT NULL," + "  foto varchar(255) NOT NULL" + ");");
@@ -62,7 +62,7 @@ public class DBConnection {
 	}
 
 	public static void tablaBitacoras() throws SQLException {
-		PreparedStatement ps = getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS ussBitacoras ("
+		PreparedStatement ps = getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS ussbitacoras ("
 				+ "  id int auto_increment primary key," + "  nave int(11) NOT NULL," + "  fecha date NOT NULL,"
 				+ "  audio varchar(255) NOT NULL" + ");");
 		ps.executeUpdate();
@@ -70,7 +70,7 @@ public class DBConnection {
 	}
 
 	public static void tablaMisiones() throws SQLException {
-		PreparedStatement ps = getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS ussMisiones ("
+		PreparedStatement ps = getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS ussmisiones ("
 				+ "  id int auto_increment primary key," + "  nombre varchar(255) NOT NULL,"
 				+ "  nave int(11) NOT NULL," + "  descripcion text NOT NULL" + ");");
 		ps.executeUpdate();
@@ -78,7 +78,7 @@ public class DBConnection {
 	}
 
 	public static void tablaSexo() throws SQLException {
-		PreparedStatement ps = getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS ussSexo ("
+		PreparedStatement ps = getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS usssexo ("
 				+ "  id int auto_increment primary key," + "  nombre varchar(255) NOT NULL" + "); ");
 		ps.executeUpdate();
 		ps.close();
@@ -93,14 +93,14 @@ public class DBConnection {
 
 	public static void insertHombre() throws SQLException {
 		PreparedStatement ps = getConnection().prepareStatement(
-				"INSERT INTO ussSexo (nombre) SELECT * FROM (SELECT 'Hombre') as tmp WHERE NOT EXISTS (SELECT nombre FROM ussSexo WHERE nombre = 'Hombre') LIMIT 1;");
+				"INSERT INTO usssexo (nombre) SELECT * FROM (SELECT 'Hombre') as tmp WHERE NOT EXISTS (SELECT nombre FROM usssexo WHERE nombre = 'Hombre') LIMIT 1;");
 		ps.executeUpdate();
 		ps.close();
 	}
 
 	public static void insertMujer() throws SQLException {
 		PreparedStatement ps = getConnection().prepareStatement(
-				"INSERT INTO ussSexo (nombre) SELECT * FROM (SELECT 'Mujer') as tmp WHERE NOT EXISTS (SELECT nombre FROM ussSexo WHERE nombre = 'Mujer') LIMIT 1; ");
+				"INSERT INTO usssexo (nombre) SELECT * FROM (SELECT 'Mujer') as tmp WHERE NOT EXISTS (SELECT nombre FROM usssexo WHERE nombre = 'Mujer') LIMIT 1; ");
 		ps.executeUpdate();
 		ps.close();
 	}

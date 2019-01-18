@@ -25,7 +25,7 @@ public class DAOTripulantes {
 	}
 
 	public void insert(Tripulantes t) throws SQLException {
-		PreparedStatement ps = con.prepareStatement("INSERT INTO ussTripulantes"
+		PreparedStatement ps = con.prepareStatement("INSERT INTO usstripulantes"
 				+ " (nombre, cargo, sexo, experiencia, origen, raza, edad, foto, nave) VALUES (?,?,?,?,?,?,?,?,?)");
 		ps.setString(1, t.getNombre());
 		ps.setString(2, t.getCargo());
@@ -41,7 +41,7 @@ public class DAOTripulantes {
 	}
 
 	public ArrayList<Tripulantes> listaTripulantes() throws SQLException {
-		PreparedStatement ps = con.prepareStatement("SELECT * from ussTripulantes");
+		PreparedStatement ps = con.prepareStatement("SELECT * from usstripulantes");
 		ResultSet rs = ps.executeQuery();
 
 		ArrayList<Tripulantes> result = null;
@@ -59,7 +59,7 @@ public class DAOTripulantes {
 	}
 
 	public Tripulantes buscarID(int id) throws SQLException {
-		PreparedStatement ps = con.prepareStatement("SELECT * FROM ussTripulantes WHERE id = ?");
+		PreparedStatement ps = con.prepareStatement("SELECT * FROM usstripulantes WHERE id = ?");
 		ps.setInt(1, id);
 		ResultSet rs = ps.executeQuery();
 		Tripulantes result = null;
@@ -81,7 +81,7 @@ public class DAOTripulantes {
 		if (id <= 0)
 			return;
 
-		PreparedStatement ps = con.prepareStatement("DELETE FROM ussTripulantes WHERE id = ?");
+		PreparedStatement ps = con.prepareStatement("DELETE FROM usstripulantes WHERE id = ?");
 		ps.setInt(1, id);
 		ps.executeUpdate();
 		ps.close();
@@ -91,7 +91,7 @@ public class DAOTripulantes {
 		if (t.getId() == 0)
 			return;
 		PreparedStatement ps = con
-				.prepareStatement("UPDATE ussTripulantes SET nombre = ?, cargo = ?, sexo = ?, experiencia = ?, origen = ?,"
+				.prepareStatement("UPDATE usstripulantes SET nombre = ?, cargo = ?, sexo = ?, experiencia = ?, origen = ?,"
 						+ "raza = ?, edad = ?,foto = ?,nave = ? WHERE id = ?");
 		ps.setString(1, t.getNombre());
 		ps.setString(2, t.getCargo());

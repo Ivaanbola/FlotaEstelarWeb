@@ -26,7 +26,7 @@ public class DAONave {
 
 	public void insert(Nave n) throws SQLException {
 		PreparedStatement ps = con
-				.prepareStatement("INSERT INTO ussNave (nombre, capitan, matricula, tipo, foto) VALUES (?,?,?,?,?)");
+				.prepareStatement("INSERT INTO ussnave (nombre, capitan, matricula, tipo, foto) VALUES (?,?,?,?,?)");
 		ps.setString(1, n.getNombre());
 		ps.setString(2, n.getCapitan());
 		ps.setString(3, n.getMatricula());
@@ -37,7 +37,7 @@ public class DAONave {
 	}
 
 	public ArrayList<Nave> listaNave() throws SQLException {
-		PreparedStatement ps = con.prepareStatement("SELECT * from ussNave");
+		PreparedStatement ps = con.prepareStatement("SELECT * from ussnave");
 		ResultSet rs = ps.executeQuery();
 
 		ArrayList<Nave> result = null;
@@ -54,7 +54,7 @@ public class DAONave {
 	}
 
 	public Nave buscarID(int id) throws SQLException {
-		PreparedStatement ps = con.prepareStatement("SELECT * FROM ussNave WHERE id = ?");
+		PreparedStatement ps = con.prepareStatement("SELECT * FROM ussnave WHERE id = ?");
 		ps.setInt(1, id);
 		ResultSet rs = ps.executeQuery();
 		Nave result = null;
@@ -75,7 +75,7 @@ public class DAONave {
 		if (id <= 0)
 			return;
 
-		PreparedStatement ps = con.prepareStatement("DELETE FROM ussNave WHERE id = ?");
+		PreparedStatement ps = con.prepareStatement("DELETE FROM ussnave WHERE id = ?");
 		ps.setInt(1, id);
 		ps.executeUpdate();
 		ps.close();
@@ -85,7 +85,7 @@ public class DAONave {
 		if (n.getId() == 0)
 			return;
 		PreparedStatement ps = con.prepareStatement(
-				"UPDATE ussNave SET nombre = ?, capitan = ?, matricula = ?, tipo = ?, foto = ? WHERE id = ?");
+				"UPDATE ussnave SET nombre = ?, capitan = ?, matricula = ?, tipo = ?, foto = ? WHERE id = ?");
 		ps.setString(1, n.getNombre());
 		ps.setString(2, n.getCapitan());
 		ps.setString(3, n.getMatricula());

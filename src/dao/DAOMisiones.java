@@ -26,7 +26,7 @@ public class DAOMisiones {
 	
 	public void insert(Misiones n) throws SQLException {
 		PreparedStatement ps = con
-				.prepareStatement("INSERT INTO ussMisiones (nombre, nave, descripcion) VALUES (?,?,?)");
+				.prepareStatement("INSERT INTO ussmisiones (nombre, nave, descripcion) VALUES (?,?,?)");
 		ps.setString(1, n.getNombre());
 		ps.setInt(2, n.getNave());
 		ps.setString(3, n.getDescripcion());
@@ -35,7 +35,7 @@ public class DAOMisiones {
 	}
 	
 	public ArrayList<Misiones> listaMisiones() throws SQLException {
-		PreparedStatement ps = con.prepareStatement("SELECT * from ussMisiones");
+		PreparedStatement ps = con.prepareStatement("SELECT * from ussmisiones");
 		ResultSet rs = ps.executeQuery();
 
 		ArrayList<Misiones> result = null;
@@ -52,7 +52,7 @@ public class DAOMisiones {
 	}
 	
 	public Misiones buscarID(int id) throws SQLException {
-		PreparedStatement ps = con.prepareStatement("SELECT * FROM ussMisiones WHERE id = ?");
+		PreparedStatement ps = con.prepareStatement("SELECT * FROM ussmisiones WHERE id = ?");
 		ps.setInt(1, id);
 		ResultSet rs = ps.executeQuery();
 		Misiones result = null;
@@ -73,7 +73,7 @@ public class DAOMisiones {
 		if (id <= 0)
 			return;
 
-		PreparedStatement ps = con.prepareStatement("DELETE FROM ussMisiones WHERE id = ?");
+		PreparedStatement ps = con.prepareStatement("DELETE FROM ussmisiones WHERE id = ?");
 		ps.setInt(1, id);
 		ps.executeUpdate();
 		ps.close();
@@ -83,7 +83,7 @@ public class DAOMisiones {
 		if (n.getId() == 0)
 			return;
 		PreparedStatement ps = con.prepareStatement(
-				"UPDATE ussMisiones SET nombre = ?, nave = ?, descripcion = ? WHERE id = ?");
+				"UPDATE ussmisiones SET nombre = ?, nave = ?, descripcion = ? WHERE id = ?");
 		ps.setString(1, n.getNombre());
 		ps.setInt(2, n.getNave());
 		ps.setString(3, n.getDescripcion());

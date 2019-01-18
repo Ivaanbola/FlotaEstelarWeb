@@ -24,7 +24,7 @@ public class DAOUsuarios {
 	}
 
 	public Usuarios buscar(String nombre, String contraseña) throws SQLException {
-		PreparedStatement ps = con.prepareStatement("SELECT * FROM ussUsuarios WHERE nombre = ? and contrasena = ?");
+		PreparedStatement ps = con.prepareStatement("SELECT * FROM ussusuarios WHERE nombre = ? and contrasena = ?");
 		ps.setString(1, nombre);
 		ps.setString(2, contraseña);
 		ResultSet rs = ps.executeQuery();
